@@ -6,5 +6,5 @@ function data=mybPskDemod(sig)
 %%
 
     phase=abs(angle(sig));
-    data=((pi/2)<=phase);
+    data=((pi/2)<=phase)';
 end

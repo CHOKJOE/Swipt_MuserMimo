@@ -8,11 +8,11 @@ bsigR=mybPskMod(dataR); %modulate data demodulated by Relay R
 %%harvesting and Relay R's transmission power
 E=eta*Tu*sum(abs(yR(LE)).^2);   %harvesting energy
 PtR_dbm=pow2dbm(E/Tu*1/N);       % transmission power for one antenna
-PrD_dbm=diag(PtR_dbm + gt_dbi + gr_dbi - pow2db(lossRD));   % reception power matrix
-
+PrD_dbm=eye(N)*(PtR_dbm + gt_dbi + gr_dbi - pow2db(lossRD));   % reception power matrix
+PrD_dbm(PrD_dbm==0)=-Inf;
 %% path and noise creation
 H_RD=RayleighFadingCoeff([N N]);        % generate Rayleigh fading complex coefficient
-nD=ComAwgnNoise([1 N],PN_dbm);          % generate noise at Relay R
+nD=ComAwgnNoise([N 1],PN_dbm);          % generate noise at Relay R
 yD=H_RD*sqrt(dbm2pow(PrD_dbm))*bsigR+nD;    % reception signal at R
 
 %% demodulatiion

@@ -7,5 +7,5 @@
 data=GeneData(N);   % generate data
 bsigS=mybPskMod(data); % modulate data 
 H_SR=RayleighFadingCoeff([L N]);    % generate Rayleigh fading complex coefficient
-nR=ComAwgnNoise([1 L],PN_dbm);      % generate noise at Relay R
+nR=ComAwgnNoise([L 1],PN_dbm);      % generate noise at Relay R
 yR=H_SR*sqrt(dbm2pow(PrR_dbm))*bsigS+nR;     % reception signal at R

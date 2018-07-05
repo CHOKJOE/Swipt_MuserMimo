@@ -39,7 +39,7 @@ for L=Lset
         RDcomm;
         snrUpperR=snrUpperR+(CalculateSNR(yR(LI),nR(LI)) >= snrTh_db);     % 1 if actual SNR is upper than SNR threshold, otherwise 0
         snrUpperD=snrUpperD+(CalculateSNR(yD,nD) >= snrTh_db);     % 1 if actual SNR is upper than SNR threshold, otherwise 0
-        snrUpperRD=snrUpperRD+(CalculateSNR(yR(LI),nR(LI))>=snrTh_db).*(CalculateSNR(yD,nD)>=snrTh_db);     % 
+        snrUpperRD=(CalculateSNR(yR(LI),nR(LI))>=snrTh_db).*(CalculateSNR(yD,nD)>=snrTh_db);     % 
         bitError=bitError+~(data==dataR);        % bit error 
     end
 
@@ -55,7 +55,7 @@ end
 row_name=cell(1,N);
 row_name{1,1}='L';
 for i=1:N
-    comstr="row_name{1,"+num2str(i)+"+1}='S"+num2str(i)+"';";
+    comstr="row_name{1,"+num2str(i)+"+1}='S"+num2str(i)+"'";
     eval(comstr);
 end
 
@@ -73,7 +73,7 @@ BER_T.Properties.RowNames=row_name;
 
 %% save
 cd(StragePath);
-save(WSfileName, 'PoutT', '-append'); 
-save(WSfileName, 'PoutR_T', '-append');
-save(WSfileName, 'PoutD_T', '-append');
-save(WSfileName, 'BER_T', '-append');
+save(WSfileName, PoutT, '-append'); 
+save(WSfileName, PoutR_T, '-append');
+save(WSfileName, PoutD_T, '-append');
+save(WSfileName, PoutD_T,vBER_T '-append';
